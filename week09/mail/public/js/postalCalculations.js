@@ -12,7 +12,7 @@ var ERROR = {"message": "The request failed!"};
 *************************************************************/
 function calcPostage(type, weight, callback) {
    var data = {
-      type: interpretType(type),
+      type: getType(type),
       weight: weight,
       cost: getCost(type, weight)
    };
@@ -65,7 +65,7 @@ function selectOptions(s1,s2) {
 /*************************************************************
 * Translates our package type codes to acutal words.
 *************************************************************/
-function interpretType(type) {
+function getType(type) {
    switch (type) {
       case "stamped": return "Stamped Letter";
       case "metered": return "Metered Letter";
