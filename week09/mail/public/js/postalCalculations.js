@@ -19,10 +19,10 @@ function calcPostage(type, weight, callback) {
 
    if (callback) callback(null, data);
     if (data.type == "Parcel") {
-      console.log("CALC: "+ data.type +" at " + weight + " lbs = $" + data.cost);
+      console.log(data.type +" at " + weight + " lbs = $" + data.cost);
     }
     else {
-      console.log("CALC: "+ data.type +" at " + weight + " oz = $" + data.cost);
+      console.log(data.type +" at " + weight + " oz = $" + data.cost);
     }
 
    return data;
