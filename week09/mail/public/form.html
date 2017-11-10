@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallas Bleak" />
+    <title>Postal Rate Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/js/postalCalculations.js"></script>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+<div id="content">
+    <div id="nav_wrapper">
+        <ul>
+          <li>
+            <h2>Postal Rate Calculator</h2>
+          </li>
+        </ul>
+    </div>
+    <br>
+
+    <form id="form" action="/getRate" method="post">
+      <fieldset>
+        <label for="type">Please select proper mail type: </label>
+        <select class="" id="type" name="type" onchange="selectOptions('type','weight')">
+          <option value="" disabled = "disabled" selected = "selected">[Select One]</option>
+          <option value="s">Letters (Stamped)</option>
+          <option value="m">Letters (Metered)</option>
+          <option value="f">Large Envelopes (Flats)</option>
+          <option value="p">Parcels</option>
+        </select>
+        <br/>
+      <label for="weight">Please enter a weight: </label>
+      <select class="" id="weight" name="weight"></select>
+      <br/>
+      <br>
+      <button id="cart_btn" type="submit" name="submit">Calculate Cost</button>
+      </fieldset>
+    </form>
+
+  <footer>
+    <ul>
+      <li>
+       &copy D.Bleak
+      </li>
+      <li>
+        BYU-I CLASS: CS 313, ASSIGNMENT: Week09 Mail Postage
+      </li>
+    </ul>
+  </footer>
+
+
+  </div>
+</body>
+</html>

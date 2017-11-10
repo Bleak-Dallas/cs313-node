@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallas Bleak" />
+    <title>Postal Rate</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+<div id="content">
+    <div id="nav_wrapper">
+        <ul>
+          <li>
+            <h2>Postal Cost</h2>
+          </li>
+        </ul>
+    </div>
+    <br/>
+    <% if (!isNaN(cost)) { %>
+    <table>
+      <tr>
+        <th>Letter Type</th>
+        <th>Weight</th>
+        <th>Cost</th>
+      </tr>
+      <tr>
+        <td><%= type %></td>
+        <% if (type == "Parcel") { %>
+        <td><%= weight %> lbs</td>
+        <% } else { %>
+        <td><%= weight %> oz</td>
+            <% }%><
+        <td>$<%= cost.toFixed(2) %></td>
+      </tr>
+    </table>
+    <% } else { %>
+    <p id="para">
+              Unable to compute price. Please return to the Calculator and try again.
+            <% }%></p>
+         <br/>
+         <button id="cart_btn" onclick="window.location.href='form.html'">Return to Calculator</button>
+    
+  <footer>
+    <ul>
+      <li>
+       &copy D.Bleak
+      </li>
+      <li>
+        BYU-I CLASS: CS 313, ASSIGNMENT: Week09 Mail Postage
+      </li>
+    </ul>
+  </footer>
+
+  </div>
+</body>
+</html>
