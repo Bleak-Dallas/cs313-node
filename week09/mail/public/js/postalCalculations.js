@@ -1,15 +1,20 @@
+/*******************************
+* Author: Dallas Bleak
+* Created: 11/09/2017
+********************************/
+
 'use strict';
 var ERROR = {"message": "The request failed!"};
 
 /*************************************************************
-* Orchestrates the Calculation and Translation of data base on
-* information given by the user.
+* This function is used with index.js to start all the
+  calculations and return the cost information
 *************************************************************/
-function run(type, weight, callback) {
+function calcPostage(type, weight, callback) {
    var data = {
-      cost: getCost(type, weight),
       type: interpretType(type),
-      weight: weight
+      weight: weight,
+      cost: getCost(type, weight)
    };
 
    if (callback) callback(null, data);
@@ -33,17 +38,17 @@ function selectOptions(s1,s2) {
   var weightArray;
   mailWeight.innerHTML = "";
 
-  if (mailType.value == "s") {
+  if (mailType.value == "stamped") {
       weightArray = ["Weight Not Over (oz.)",1,2,3,3.5];
   }
-  else if (mailType.value == "m") {
+  else if (mailType.value == "metered") {
       weightArray = ["Weight Not Over (oz.)",1,2,3,3.5];
   }
-  else if (mailType.value == "f") {
+  else if (mailType.value == "flat") {
       weightArray = ["Weight Not Over (oz.)",1,2,3,4,5,6,7,8,9,
                                                  10,11,12,13];
   }
-  else if (mailType.value == "p") {
+  else if (mailType.value == "parcel") {
       weightArray = ["Weight Not Over (lbs.)",1,2,3,4,5,6,7,8,9,10,11,
                                               12,13,14,15,16,17,18,19,
                                               20,21,22,23,24,25,26];
@@ -62,10 +67,10 @@ function selectOptions(s1,s2) {
 *************************************************************/
 function interpretType(type) {
    switch (type) {
-      case "s": return "Stamped Letter";
-      case "m": return "Metered Letter";
-      case "f": return "Large Envelope";
-      case "p": return "Parcel";
+      case "stamped": return "Stamped Letter";
+      case "metered": return "Metered Letter";
+      case "flat": return "Large Envelope";
+      case "parcel": return "Parcel";
       default:
          return type;
    }
@@ -76,40 +81,43 @@ function interpretType(type) {
 *************************************************************/
 function getCost(type, weight) {
    switch (type) {
-      case "s": return stampedMatrix(weight);
-      case "m": return meteredMatrix(weight);
-      case "f": return flatMatrix(weight);
-      case "p": return parcelMatrix(weight);
+      case "stamped": return calcStamped(weight);
+      case "metered": return calcMetered(weight);
+      case "flat": return calcFlat(weight);
+      case "parcel": return calcParcel(weight);
    }
-   return NaN; // error flag
+   // if error retutn this
+   return NaN;
 }
 
 /*************************************************************
-* Returns the postage pricing for the stamped letters
+* Returns pricing for stamped letters
 *************************************************************/
-function stampedMatrix(w) {
+function calcStamped(w) {
    if (w <= 1) { return 0.49; }
    if (w <= 2) { return 0.70; }
    if (w <= 3) { return 0.91; }
    if (w <= 3.5) { return 1.12; }
-   return NaN; // error flag
+   // if error retutn this
+   return NaN;
 }
 
 /*************************************************************
-* Returns the postage pricing for the metered letters
+* Returns pricing for metered letters
 *************************************************************/
-function meteredMatrix(w) {
+function calcMetered(w) {
    if (w <= 1) { return 0.46; }
    if (w <= 2) { return 0.67; }
    if (w <= 3) { return 0.88; }
    if (w <= 3.5) { return 1.09; }
-   return NaN; // error flag
+   // if error retutn this
+   return NaN;
 }
 
 /*************************************************************
-* Returns the postage pricing for the large envelopes
+* Returns pricing for flat envelops
 *************************************************************/
-function flatMatrix(w) {
+function calcFlat(w) {
    if (w <= 1)  { return 0.98; }
    if (w <= 2)  { return 1.19; }
    if (w <= 3)  { return 1.40; }
@@ -123,13 +131,14 @@ function flatMatrix(w) {
    if (w <= 11) { return 3.08; }
    if (w <= 12) { return 3.29; }
    if (w <= 13) { return 3.50; }
-   return NaN; // error flag
+   // if error retutn this
+   return NaN;
 }
 
 /*************************************************************
-* Returns the postage pricing for the paracels
+* Returns pricing for parccels
 *************************************************************/
-function parcelMatrix(w) {
+function calcParcel(w) {
    if (w <= 1)   { return 6.65; }
    if (w <= 2)   { return 7.20; }
    if (w <= 3)   { return 7.80; }
@@ -156,12 +165,13 @@ function parcelMatrix(w) {
    if (w <= 24)  { return 21.70; }
    if (w <= 25)  { return 22.55; }
    if (w <= 26)  { return 23.50; }
-   return NaN; // error flag
+   // if error retutn this
+   return NaN;
 }
 
 /*************************************************************
 * Prepare for importing into Node.js
 *************************************************************/
 module.exports = {
-   run: run
+   calcPostage: calcPostage
 };

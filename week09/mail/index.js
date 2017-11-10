@@ -39,9 +39,9 @@ app.post('/getRate', function(request, response) {
    var type   = request.body.type;
    var weight = request.body.weight;
 
-   calculatePostage.run(type, weight, function(err, data) {
-      if (err) {
-         console.log(err);
+   calculatePostage.calcPostage(type, weight, function(error, data) {
+      if (error) {
+         console.log(error);
       } else {
          response.render("pages/postalCalcResult", data);
          response.send();
