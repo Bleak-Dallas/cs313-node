@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="/js/jquery.js"></script>
+  <title>Math Form</title>
+</head>
+
+<body>
+
+<div class="container">
+  <form id="math" action="/math" method="get">
+    <select id="mathOperation" name="mathOperation">
+      <option>Add</option>
+      <option>Subtract</option>
+      <option>Multiply</option>
+      <option>Divide</option>
+    </select>
+
+    <input type="text" name="num1" id="num1" placeholder="First number">
+    <input type="text" name="num2" id="num2" placeholder="Second number">
+    <br><br>
+    <input type="submit" name="Result">
+    <button id="button" >Ajax</button>
+  </form>
+  <br>
+  <br>
+
+  <div id="results"></div>
+ 
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "movies_made_easy",
+  "version": "1.0.0",
+  "description": "An application the users can use to see the top 20 rated movies as well as search for and read information about any moview contained in the The Movie Database API.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dallas Bleak",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "moviedb": "^0.2.10"
+  }
+}
