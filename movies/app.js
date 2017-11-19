@@ -61,6 +61,7 @@ app.post('/getTop20', function(request, response) {
 *************************************************************/
 app.post('/getMovies', function(request, response) {
    var searchMovie   = request.body.searchMovie;
+    if (searchMovie) {
 
    console.log('******START SEARCH******');
    console.log('SEARCH QUERY: ' + searchMovie);
@@ -76,6 +77,9 @@ app.post('/getMovies', function(request, response) {
   response.render("pages/movieSearch", {movieSearchResults:movieSearchResults});
   response.send();
   });
+  } else {
+    console.log("SEARCH NOT DEFINED");
+  }
 });
 
 /*************************************************************
